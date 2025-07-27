@@ -153,6 +153,24 @@ footer {
   display: none;
 }
 
+.arrow-down {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 10px;
+  color: #2c2c2c; /* Slight contrast from background */
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+
 /* Responsive tweaks */
 @media (max-width: 480px) {
   .toggle-container {
