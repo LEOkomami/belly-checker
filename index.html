@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>בדיקת בטן</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1>בדיקת בטן</h1>
+
+  <button class="button" onclick="startTest()">בדיקה</button>
+
+  <div id="loader">
+    <div id="loader-bar"></div>
+  </div>
+
+  <div id="message">לא אכל(ה) מספיק, עדיין יש מקום!</div>
+
+  <div class="spacer"></div>
+
+  <div class="toggle-container">
+    <p>הילד(ה) אכל?</p>
+    <button class="toggle-button green" onclick="setFed(true)">כן</button>
+    <button class="toggle-button red" onclick="setFed(false)">לא</button>
+  </div>
+
+  <footer>
+    An LEOkonami app
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
