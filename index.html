@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>בדיקת בטן</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2c8f99">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="בדיקת בטן">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
+
+</head>
+<body>
+  <div class="navbar">
+    <span class="app-title">בדיקת בטן</span>
+    <button id="menu-toggle" class="hamburger">&#9776;</button>
+  </div>
+<div class="description-box" ondblclick="hideDescription()">
+  <p>
+    👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
+    <br />
+    לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
+    ולבחור האם הילד(ה) אכל/ה מספיק או לא.
+    <br />
+    לאחר מכן לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊
+	<br />
+	לחיצה כפולה כאן תעלים את ההוראות 🤫
+  </p>
+</div>
+
+
+
+  <div id="toggle-section" class="toggle-container hidden">
+    <p>הילד(ה) אכל?</p>
+    <button class="toggle-button green" onclick="setFed(true)">כן</button>
+    <button class="toggle-button red" onclick="setFed(false)">לא</button>
+  </div>
+
+  <!-- Wrap main interactive UI -->
+  <div class="main-content">
+    <button class="button" onclick="startTest()">בדיקה</button>
+
+    <div id="loader">
+      <div id="loader-bar"></div>
+    </div>
+
+    <div id="message">לא אכל(ה) מספיק, עדיין יש מקום!</div>
+  </div>
+
+  <footer>
+    An LEOkonami app
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
