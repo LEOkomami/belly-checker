@@ -56,3 +56,11 @@ function hideDescription() {
   const descBox = document.querySelector(".description-box");
   descBox.style.display = "none";
 }
+
+function scrollToToggle() {
+  const toggleSection = document.getElementById('toggle-section');
+  if (toggleSection) {
+    toggleSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
