@@ -29,6 +29,7 @@ function startTest() {
   loaderBar.style.width = "0";
 
   setTimeout(() => {
+    loaderBar.style.transition = 'width 5s linear';
     loaderBar.style.width = "100%";
   }, 100);
 
