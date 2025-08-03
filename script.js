@@ -17,7 +17,7 @@ function playBeep(frequency, duration) {
 
 function setFed(fed) {
   childFed = fed;
-  document.getElementById("toggle-section").classList.add("hidden");
+  document.getElementById("side-nav").classList.add("hidden");
 }
 
 function startTest() {
@@ -51,8 +51,8 @@ function startTest() {
 }
 
 document.getElementById("menu-toggle").addEventListener("click", () => {
-  const toggleSection = document.getElementById("toggle-section");
-  toggleSection.classList.toggle("hidden");
+  const sideNav = document.getElementById("side-nav");
+  sideNav.classList.toggle("hidden");
 });
 
 function hideDescription() {
@@ -61,5 +61,5 @@ function hideDescription() {
 }
 
 function scrollToToggle() {
-  document.getElementById("toggle-section").scrollIntoView({ behavior: 'smooth' });
+  document.getElementById("side-nav").scrollIntoView({ behavior: 'smooth' });
 }
