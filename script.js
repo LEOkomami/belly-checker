@@ -17,7 +17,7 @@ function playBeep(frequency, duration) {
 
 function setFed(fed) {
   childFed = fed;
-  document.getElementById("side-nav").classList.add("hidden");
+  document.getElementById("side-nav").classList.remove("open");
 }
 
 function startTest() {
@@ -52,7 +52,7 @@ function startTest() {
 
 document.getElementById("menu-toggle").addEventListener("click", () => {
   const sideNav = document.getElementById("side-nav");
-  sideNav.classList.toggle("hidden");
+  sideNav.classList.toggle("open");
 });
 
 function hideDescription() {
