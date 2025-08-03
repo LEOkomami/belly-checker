@@ -89,9 +89,9 @@ body {
 }
 
 .arrow {
-  font-size: 2.5rem;
+  font-size: 5.5rem;
   margin-top: 1rem;
-  color: #2c8f99;
+  color: #2c8f99 !important;
   cursor: pointer;
 }
 
