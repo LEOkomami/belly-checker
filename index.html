@@ -22,23 +22,19 @@
 
 </head>
 <body>
-  <div class="navbar">
-    <span class="app-title">בדיקת בטן</span>
-    <button id="menu-toggle" class="hamburger">&#9776;</button>
-  </div>
-<div class="description-box" ondblclick="hideDescription()">
-  <p>
-    👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
-    <br />
-    לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
-    ולבחור האם הילד(ה) אכל/ה מספיק או לא.
-    <br />
-    לאחר מכן לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊
-	<br />
-	לחיצה כפולה כאן תעלים את ההוראות 🤫
-  </p>
+<div class="navbar">
+  <span class="app-title">בדיקת בטן</span>
+  <button id="menu-toggle" class="hamburger">&#9776;</button>
 </div>
 
+<!-- Menu Drawer -->
+<div id="menu" class="menu hidden">
+  <div id="toggle-section" class="toggle-container">
+    <p>הילד(ה) אכל?</p>
+    <button class="toggle-button green" onclick="setFed(true)">כן</button>
+    <button class="toggle-button red" onclick="setFed(false)">לא</button>
+  </div>
+</div>
 
 
   <div id="toggle-section" class="toggle-container hidden">
