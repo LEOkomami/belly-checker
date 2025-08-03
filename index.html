@@ -13,7 +13,6 @@
   <meta name="apple-mobile-web-app-title" content="בדיקת בטן">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js')
@@ -34,9 +33,8 @@
       לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
       ולבחור האם הילד(ה) אכל/ה מספיק או לא.
       <br />
-      לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊
-	  <br />
-	  לחיצה כפולה כאן תעלים את ההוראות 🤫
+      לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
+      לחיצה כפולה כאן תעלים את ההוראות 🤫
     </p>
   </div>
 
@@ -49,11 +47,9 @@
   <div class="main-content">
     <button class="button" onclick="startTest()">בדיקה</button>
     <div class="arrow-down" onclick="scrollToToggle()">&#x25BC;</div>
-
     <div id="loader">
       <div id="loader-bar"></div>
     </div>
-
     <div id="message">לא אכל(ה) מספיק, עדיין יש מקום!</div>
   </div>
 
