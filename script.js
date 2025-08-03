@@ -1,66 +1,74 @@
+let isFed = false;
 
-let childFed = false;
-
-function playBeep(frequency, duration) {
-  const context = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = context.createOscillator();
-  const gainNode = context.createGain();
-
-  oscillator.connect(gainNode);
-  gainNode.connect(context.destination);
-
-  oscillator.type = 'sine';
-  oscillator.frequency.value = frequency;
-  oscillator.start();
-  gainNode.gain.setValueAtTime(1, context.currentTime);
-  oscillator.stop(context.currentTime + duration / 1000);
-}
-
-function setFed(fed) {
-  childFed = fed;
-}
-
-function startTest() {
-  const msg = document.getElementById("message");
-  msg.style.display = "none";
-  const loader = document.getElementById("loader");
-  const loaderBar = document.getElementById("loader-bar");
-  loader.style.display = "block";
-  loaderBar.style.width = "0";
-
-  setTimeout(() => {
-    loaderBar.style.width = "100%";
-  }, 100);
-
-  setTimeout(() => {
-    loader.style.display = "none";
-    msg.style.display = "block";
-    if (childFed) {
-      msg.innerText = "אכל(ה) מספיק!";
-      msg.style.backgroundColor = "#2ecc71";
-      playBeep(880, 300);
-    } else {
-      msg.innerText = "לא אכל(ה) מספיק, עדיין יש מקום!";
-      msg.style.backgroundColor = "#e74c3c";
-      playBeep(400, 300);
-    }
-  }, 5100);
-}
-
+// Toggle hamburger menu
 document.getElementById("menu-toggle").addEventListener("click", () => {
-  const toggleSection = document.getElementById("toggle-section");
-  toggleSection.classList.toggle("hidden");
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("hidden");
 });
 
-function hideDescription() {
-  const descBox = document.querySelector(".description-box");
-  descBox.style.display = "none";
+// Set fed state and close menu
+function setFed(fed) {
+  isFed = fed;
+
+  // Close the menu
+  const menu = document.getElementById("menu");
+  menu.classList.add("hidden");
 }
 
-function scrollToToggle() {
-  const toggleSection = document.getElementById('toggle-section');
-  if (toggleSection) {
-    toggleSection.scrollIntoView({ behavior: 'smooth' });
+// Start the "בדיקה" test
+function startTest() {
+  const loader = document.getElementById("loader");
+  const bar = document.getElementById("loader-bar");
+  const message = document.getElementById("message");
+
+  // Reset loader and message
+  bar.style.width = "0%";
+  message.style.opacity = "0";
+
+  loader.style.display = "block";
+
+  let width = 0;
+  const interval = setInterval(() => {
+    width += 1;
+    bar.style.width = width + "%";
+
+    if (width >= 100) {
+      clearInterval(interval);
+      loader.style.display = "none";
+      showMessage();
+    }
+  }, 50); // 50ms * 100 = 5 seconds
+}
+
+// Show message result
+function showMessage() {
+  const message = document.getElementById("message");
+
+  if (isFed) {
+    message.textContent = "אכל(ה) מספיק, כל הכבוד!";
+    message.style.backgroundColor = "#a8e6a1"; // green
+    playSound("pleasant.mp3");
+  } else {
+    message.textContent = "לא אכל(ה) מספיק, עדיין יש מקום!";
+    message.style.backgroundColor = "#f8a5a5"; // red
+    playSound("unpleasant.mp3");
   }
+
+  message.style.opacity = "1";
+
+  // Auto-hide after 30 seconds
+  setTimeout(() => {
+    message.style.opacity = "0";
+  }, 30000);
 }
 
+// Sound playback
+function playSound(file) {
+  const audio = new Audio(file);
+  audio.play();
+}
+
+// Scroll to toggle section (if needed by arrow)
+function scrollToToggle() {
+  document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+}
