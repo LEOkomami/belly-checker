@@ -44,21 +44,21 @@ function startTest() {
       msg.style.backgroundColor = "#e74c3c";
       playBeep(400, 300);
     }
-
     setTimeout(() => {
       msg.style.display = "none";
     }, 30000);
   }, 5100);
 }
 
-function hideDescription() {
-  document.querySelector(".description-box").style.display = "none";
-}
-
 document.getElementById("menu-toggle").addEventListener("click", () => {
   const toggleSection = document.getElementById("toggle-section");
   toggleSection.classList.toggle("hidden");
 });
+
+function hideDescription() {
+  const descBox = document.querySelector(".description-box");
+  descBox.style.display = "none";
+}
 
 function scrollToToggle() {
   document.getElementById("toggle-section").scrollIntoView({ behavior: 'smooth' });
