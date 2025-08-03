@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="he">
 <head>
   <meta charset="UTF-8" />
@@ -26,6 +25,14 @@
     <button id="menu-toggle" class="hamburger">&#9776;</button>
   </div>
 
+  <div class="side-nav hidden" id="side-nav">
+    <div class="toggle-container">
+      <p>הילד(ה) אכל?</p>
+      <button class="toggle-button green" onclick="setFed(true)">כן</button>
+      <button class="toggle-button red" onclick="setFed(false)">לא</button>
+    </div>
+  </div>
+
   <div class="description-box" ondblclick="hideDescription()">
     <p>
       👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
@@ -36,12 +43,6 @@
       לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
       לחיצה כפולה כאן תעלים את ההוראות 🤫
     </p>
-  </div>
-
-  <div id="toggle-section" class="toggle-container hidden">
-    <p>הילד(ה) אכל?</p>
-    <button class="toggle-button green" onclick="setFed(true)">כן</button>
-    <button class="toggle-button red" onclick="setFed(false)">לא</button>
   </div>
 
   <div class="main-content">
