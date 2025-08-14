@@ -219,16 +219,16 @@ font-size: 0.8em;
   right: 0;
   width: 250px;
   height: 100%;
-  background-color: #fff;
+  background-color: #FFEDCC;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
   z-index: 1000;
-  transform: translateX(100%);
+  transform: translateX(100%); /* Hide off the right side */
   transition: transform 0.3s ease-in-out;
 }
 
 .side-nav.open {
-  transform: translateX(0);
+  transform: translateX(0); /* Slide in from right */
 }
 
 /* Result message enhancements */
