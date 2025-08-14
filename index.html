@@ -23,14 +23,14 @@
     .side-nav {
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0;
       width: 280px;
       height: 100%;
       background-color: #FFEDCC;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
       padding: 30px 20px;
       z-index: 1000;
-      transform: translateX(100%);
+      transform: translateX(-100%);
       transition: transform 0.3s ease-in-out;
       display: flex;
       flex-direction: column;
@@ -66,15 +66,71 @@
     .side-nav .red {
       background-color: #e74c3c;
     }
+
+    .side-nav .nav-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .side-nav .close-btn, .side-nav .help-btn {
+      font-size: 1.6em;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay .popup {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .overlay .popup .close-popup {
+      font-size: 1.5em;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+    }
+
+    .app-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      flex: 1;
+    }
   </style>
 </head>
 <body>
   <div class="navbar">
-    <span class="app-title">בדיקת בטן</span>
     <button id="menu-toggle" class="hamburger">&#9776;</button>
+    <span class="app-title">בדיקת בטן</span>
   </div>
 
   <div class="side-nav" id="side-nav">
+    <div class="nav-header">
+      <button class="close-btn" onclick="closeSideNav()">×</button>
+      <button class="help-btn" onclick="toggleHelpPopup()">?</button>
+    </div>
     <div class="toggle-container">
       <p>הילד(ה) אכל?</p>
       <button class="toggle-button green" onclick="setFed(true)">כן</button>
@@ -82,13 +138,22 @@
     </div>
   </div>
 
+  <div class="overlay" id="help-overlay" onclick="dismissHelp(event)">
+    <div class="popup" onclick="event.stopPropagation()">
+      <span class="close-popup" onclick="toggleHelpPopup()">×</span>
+      <p>
+        👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!<br />
+        לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה) ולבחור האם הילד(ה) אכל/ה מספיק או לא.<br />
+        לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
+        לחיצה כפולה כאן תעלים את ההוראות 🤫
+      </p>
+    </div>
+  </div>
+
   <div class="description-box" ondblclick="hideDescription()">
-    <p>
-      👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
-      <br />
-      לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
-      ולבחור האם הילד(ה) אכל/ה מספיק או לא.
-      <br />
+    <p id="welcome-text">
+      👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!<br />
+      לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה) ולבחור האם הילד(ה) אכל/ה מספיק או לא.<br />
       לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
       לחיצה כפולה כאן תעלים את ההוראות 🤫
     </p>
@@ -100,7 +165,9 @@
     <div id="loader">
       <div id="loader-bar"></div>
     </div>
+    <div id="tip" style="margin: 10px; font-weight: bold;"></div>
     <div id="message">לא אכל(ה) מספיק, עדיין יש מקום!</div>
+    <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; display: none;"></canvas>
   </div>
 
   <footer>
@@ -110,3 +177,19 @@
   <script src="script.js"></script>
 </body>
 </html>
+```
+
+<!-- Hebrew healthy eating tips -->
+<!-- To be added to JS:
+const tips = [
+  "אכלו ירקות צבעוניים בכל ארוחה",
+  "שתו הרבה מים במהלך היום",
+  "נסו להימנע מממתקים לפני הארוחות",
+  "אכלו פירות במקום קינוחים מתוקים",
+  "זכרו ללעוס היטב את האוכל",
+  "אל תשכחו לאכול ארוחת בוקר בריאה",
+  "שלבו קטניות ודגנים בארוחות שלכם",
+  "הימנעו ממשקאות ממותקים",
+  "נסו לטעום דברים חדשים ובריאים"
+];
+-->
