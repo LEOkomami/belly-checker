@@ -178,10 +178,13 @@ footer {
   height: 100%;
   background-color: #FFEDCC;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  padding: 20px 15px;
   z-index: 1000;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .side-nav.open {
@@ -191,17 +194,18 @@ footer {
 .side-nav-header {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
+  width: 100%;
   margin-bottom: 10px;
+  gap: 10px;
 }
 
 .side-nav-icon {
-  font-size: 1.5em;
+  font-size: 1.2em;
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
+  color: black;
+  padding: 5px;
 }
 
 /* === Help Overlay === */
