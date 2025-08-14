@@ -145,14 +145,16 @@ function triggerConfetti() {
   }
 }
 
-// Make sure nav is closed on load
+// Ensure sidebar is closed on load and toggle works
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("side-nav").classList.remove("open");
+  const sideNav = document.getElementById("side-nav");
+  const menuToggle = document.getElementById("menu-toggle");
 
-  const menuButton = document.getElementById("menu-toggle");
-  if (menuButton) {
-    menuButton.addEventListener("click", () => {
-      document.getElementById("side-nav").classList.toggle("open");
+  sideNav.classList.remove("open");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      sideNav.classList.toggle("open");
     });
   }
 });
