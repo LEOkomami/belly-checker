@@ -21,17 +21,18 @@
   </div>
 
   <!-- Sidebar nav -->
-  <div class="side-nav" id="side-nav">
-    <div class="side-nav-header">
-      <button class="side-nav-icon" onclick="toggleHelpPopup()">❓</button>
-      <button class="side-nav-icon" onclick="closeSideNav()">✕</button>
-    </div>
-    <div class="toggle-container">
-      <p><strong>הילד(ה) אכל?</strong></p>
-      <button class="toggle-button green" onclick="setFed(true)">כן</button>
-      <button class="toggle-button red" onclick="setFed(false)">לא</button>
-    </div>
+<div class="side-nav" id="side-nav">
+  <div class="side-nav-header">
+    <button class="side-nav-icon" onclick="toggleHelpPopup()">❓</button>
+    <button class="side-nav-icon" onclick="closeSideNav()">✕</button>
   </div>
+
+  <div class="toggle-container">
+    <p><strong>הילד(ה) אכל?</strong></p>
+    <button class="toggle-button green" onclick="setFed(true)">כן</button>
+    <button class="toggle-button red" onclick="setFed(false)">לא</button>
+  </div>
+</div>
 
   <!-- Instructions overlay -->
   <div id="help-overlay" class="help-overlay" onclick="dismissHelp(event)">
