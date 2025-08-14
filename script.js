@@ -25,24 +25,27 @@ function startTest() {
   const loaderBar = document.getElementById("loader-bar");
   const confettiCanvas = document.getElementById("confetti-canvas");
 
+  // Reset UI
   msg.style.display = "none";
+  tip.innerText = "";
   loader.style.display = "block";
   loaderBar.style.width = "0";
-  tip.innerText = "";
+  confettiCanvas.style.display = "none";
 
-  // Show random tip
+  // Show a random tip
   showRandomTip();
 
+  // Animate loading bar
   setTimeout(() => {
     loaderBar.style.width = "100%";
   }, 100);
 
+  // Show result after 5 seconds
   setTimeout(() => {
     loader.style.display = "none";
-    const success = childFed;
     msg.style.display = "block";
 
-    if (success) {
+    if (childFed) {
       msg.innerText = "אכל(ה) מספיק!";
       msg.style.backgroundColor = "#2ecc71";
       playBeep(880, 300);
@@ -53,7 +56,7 @@ function startTest() {
       playBeep(400, 300);
     }
 
-    // Clear result after 30s
+    // Auto-hide message after 30s
     setTimeout(() => {
       msg.style.display = "none";
       confettiCanvas.style.display = "none";
@@ -63,7 +66,8 @@ function startTest() {
 
 function showRandomTip() {
   const randomTip = tips[Math.floor(Math.random() * tips.length)];
-  document.getElementById("tip").innerText = randomTip;
+  const tipBox = document.getElementById("tip");
+  tipBox.innerText = randomTip;
 }
 
 function playBeep(frequency, duration) {
@@ -73,6 +77,7 @@ function playBeep(frequency, duration) {
 
   oscillator.connect(gainNode);
   gainNode.connect(context.destination);
+
   oscillator.type = 'sine';
   oscillator.frequency.value = frequency;
   oscillator.start();
@@ -97,7 +102,9 @@ function dismissHelp(event) {
 
 function hideDescription() {
   const descBox = document.querySelector(".description-box");
-  descBox.style.display = "none";
+  if (descBox) {
+    descBox.style.display = "none";
+  }
   hasSeenInstructions = true;
 }
 
@@ -108,25 +115,44 @@ function scrollToToggle() {
 function triggerConfetti() {
   const canvas = document.getElementById("confetti-canvas");
   canvas.style.display = 'block';
-  const confetti = canvas.confetti || window.confetti;
-  if (!confetti) return;
 
-  confetti({
-    particleCount: 60,
-    spread: 100,
-    origin: { x: 0.1, y: 0.5 },
-  });
-
-  confetti({
-    particleCount: 60,
-    spread: 100,
-    origin: { x: 0.9, y: 0.5 },
-  });
+  if (typeof confetti === "function") {
+    // If canvas-confetti is loaded as global function
+    confetti({
+      particleCount: 60,
+      spread: 100,
+      origin: { x: 0.1, y: 0.5 },
+    });
+    confetti({
+      particleCount: 60,
+      spread: 100,
+      origin: { x: 0.9, y: 0.5 },
+    });
+  } else if (canvas.confetti) {
+    // If canvas-confetti is bound to canvas
+    canvas.confetti({
+      particleCount: 60,
+      spread: 100,
+      origin: { x: 0.1, y: 0.5 },
+    });
+    canvas.confetti({
+      particleCount: 60,
+      spread: 100,
+      origin: { x: 0.9, y: 0.5 },
+    });
+  } else {
+    console.warn("Confetti library not found");
+  }
 }
 
+// Make sure nav is closed on load
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("menu-toggle").addEventListener("click", () => {
-    document.getElementById("side-nav").classList.toggle("open");
-  });
   document.getElementById("side-nav").classList.remove("open");
+
+  const menuButton = document.getElementById("menu-toggle");
+  if (menuButton) {
+    menuButton.addEventListener("click", () => {
+      document.getElementById("side-nav").classList.toggle("open");
+    });
+  }
 });
