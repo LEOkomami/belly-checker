@@ -126,17 +126,17 @@
     <span class="app-title">בדיקת בטן</span>
   </div>
 
-  <div class="side-nav" id="side-nav">
-    <div class="nav-header">
-      <button class="close-btn" onclick="closeSideNav()">×</button>
-      <button class="help-btn" onclick="toggleHelpPopup()">?</button>
-    </div>
-    <div class="toggle-container">
-      <p>הילד(ה) אכל?</p>
-      <button class="toggle-button green" onclick="setFed(true)">כן</button>
-      <button class="toggle-button red" onclick="setFed(false)">לא</button>
-    </div>
+<div class="side-nav" id="side-nav">
+  <button onclick="closeSideNav()" style="float:left; font-size: 1.5em;">✕</button>
+  <button onclick="toggleHelpPopup()" style="float:right; font-size: 1.5em;">❓</button>
+
+  <div class="toggle-container" style="margin-top: 40px;">
+    <p>הילד(ה) אכל?</p>
+    <button class="toggle-button green" onclick="setFed(true)">כן</button>
+    <button class="toggle-button red" onclick="setFed(false)">לא</button>
   </div>
+</div>
+
 
   <div class="overlay" id="help-overlay" onclick="dismissHelp(event)">
     <div class="popup" onclick="event.stopPropagation()">
