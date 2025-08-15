@@ -15,10 +15,11 @@ body {
   color: #333;
 }
 
+/* ---------- Navbar (hamburger RIGHT) ---------- */
 .navbar {
   display: flex;
-  flex-direction: row; /* keep LTR inside bar */
-  justify-content: flex-end; /* push hamburger to right */
+  flex-direction: row !important;      /* ensure LTR inside bar */
+  justify-content: flex-end !important;/* push hamburger to the right */
   align-items: center;
   background-color: #2c8f99;
   color: white;
@@ -28,8 +29,8 @@ body {
 .app-title {
   font-size: 1.4em;
   font-weight: 700;
-  margin: 0 auto; /* keeps title visually centered */
-  margin-right: auto;
+  margin: 0 auto;
+  margin-right: auto;                  /* keep title centered, hamburger right */
 }
 
 .hamburger {
@@ -173,19 +174,19 @@ footer {
   color: #999;
 }
 
-/* ---------- Side Nav (slide from RIGHT) ---------- */
+/* ---------- Side Nav (slides from RIGHT) ---------- */
 .side-nav {
   position: fixed;
   top: 0;
-  right: 0 !important;              /* anchor to right */
+  right: 0 !important;                 /* anchor to right edge */
   left: auto !important;
   width: 260px;
   height: 100%;
   background-color: #FFEDCC;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   padding: 16px 14px;
-  z-index: 1000;
-  transform: translateX(100%) !important; /* start off-screen RIGHT */
+  z-index: 2000;
+  transform: translateX(100%) !important; /* start fully off-screen RIGHT */
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -198,6 +199,8 @@ footer {
 /* header row inside side-nav: ? and × at top-right */
 .side-nav-header {
   display: flex;
+  flex-direction: row;              /* natural order */
+  justify-content: flex-end;        /* push icons to the right */
   align-items: center;
   gap: 12px;
   width: 100%;
@@ -205,9 +208,9 @@ footer {
 }
 
 .side-nav-icon {
-  font: inherit;              /* keep Noto Sans Hebrew */
+  font: inherit;                    /* keep Noto Sans Hebrew */
   font-size: 20px;
-  color: #000;                /* simple black */
+  color: #000;                      /* simple black */
   background: none;
   border: none;
   padding: 6px;
@@ -220,10 +223,10 @@ footer {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
-  display: none;               /* toggled to flex via JS */
+  display: none;                    /* toggled to flex via JS */
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 3000;                    /* above side-nav */
 }
 
 .help-popup {
@@ -243,7 +246,7 @@ footer {
 .close-popup {
   position: absolute;
   top: 10px;
-  right: 12px;                /* ensure top-right */
+  right: 12px;                      /* ensure top-right */
   font-size: 1.4em;
   background: none;
   border: none;
