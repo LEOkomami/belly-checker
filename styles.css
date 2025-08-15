@@ -18,7 +18,7 @@ body {
 /* ---------- Navbar (hamburger on the RIGHT) ---------- */
 .navbar {
   display: flex;
-  flex-direction: row-reverse;       /* puts hamburger on the right */
+  flex-direction: row-reverse; /* puts hamburger at right edge */
   justify-content: space-between;
   align-items: center;
   background-color: #2c8f99;
@@ -30,7 +30,7 @@ body {
 .app-title {
   font-size: 1.4em;
   font-weight: 700;
-  margin: 0 auto;                    /* keep title centered visually */
+  margin: 0 auto; /* keeps title visually centered */
 }
 
 .hamburger {
@@ -62,13 +62,6 @@ body {
   font-size: 1.05em;
   line-height: 1.6;
   text-align: center;
-}
-
-/* optional title (if used) */
-h1 {
-  color: #1a2e4b;
-  font-size: 2em;
-  margin: 10px 0;
 }
 
 /* ---------- Message + Tips ---------- */
@@ -181,53 +174,55 @@ footer {
   color: #999;
 }
 
-/* ---------- Side Nav (slides from RIGHT) ---------- */
+/* ---------- Side Nav (slide from RIGHT) ---------- */
 .side-nav {
   position: fixed;
   top: 0;
-  right: 0;                          /* anchor to right edge */
+  right: 0 !important;              /* anchor to right */
+  left: auto !important;
   width: 260px;
   height: 100%;
   background-color: #FFEDCC;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   padding: 16px 14px;
   z-index: 1000;
-  transform: translateX(100%);       /* start fully hidden off-screen right */
+  transform: translateX(100%) !important; /* start off-screen RIGHT */
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
 }
 
 .side-nav.open {
-  transform: translateX(0);          /* slide in from right */
+  transform: translateX(0) !important;     /* slide in from RIGHT */
 }
 
-/* header row inside the side-nav: ✕ and ❓ on the RIGHT */
+/* header row inside side-nav: ? and × at top-right */
 .side-nav-header {
   display: flex;
-  justify-content: flex-end;         /* push icons to the right */
+  justify-content: flex-end;  /* push to right */
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
   margin-bottom: 8px;
 }
 
 .side-nav-icon {
-  font-size: 1.2em;
+  font: inherit;              /* keep Noto Sans Hebrew */
+  font-size: 20px;
+  color: #000;                /* simple black */
   background: none;
   border: none;
-  cursor: pointer;
-  color: #000;                       /* black icons */
   padding: 6px;
   line-height: 1;
+  cursor: pointer;
 }
 
-/* ---------- Help Overlay / Popup (X on the RIGHT) ---------- */
+/* ---------- Help Overlay / Popup (X on RIGHT) ---------- */
 .help-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
-  display: none;                     /* toggled to flex via JS */
+  display: none;               /* toggled to flex via JS */
   justify-content: center;
   align-items: center;
   z-index: 2000;
@@ -250,16 +245,19 @@ footer {
 .close-popup {
   position: absolute;
   top: 10px;
-  right: 12px;                       /* move to right side */
+  right: 12px;                /* ensure top-right */
   font-size: 1.4em;
   background: none;
   border: none;
+  color: #000;
   cursor: pointer;
-  color: #000;                       /* black icon */
   line-height: 1;
 }
 
-/* ---------- Responsive tweaks ---------- */
+/* ---------- Utility ---------- */
+.hidden { display: none; }
+
+/* ---------- Responsive ---------- */
 @media (max-width: 480px) {
   .app-title { font-size: 1.2em; }
   .toggle-button { padding: 10px 20px; font-size: 1em; }
