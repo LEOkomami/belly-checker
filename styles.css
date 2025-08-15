@@ -201,7 +201,6 @@ footer {
 .side-nav-header {
   display: flex;
   flex-direction: row;              /* natural order */
-  justify-content: flex-end;        /* push icons to the right */
   align-items: center;
   gap: 12px;
   width: 100%;
