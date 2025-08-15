@@ -15,7 +15,7 @@ const tips = [
 
 function setFed(fed) {
   childFed = fed;
-  closeSideNav();
+  closeSideNav(); // auto close after choosing
 }
 
 function startTest() {
@@ -30,17 +30,17 @@ function startTest() {
   tip.innerText = "";
   loader.style.display = "block";
   loaderBar.style.width = "0";
-  confettiCanvas.style.display = "none";
+  confettiCanvas && (confettiCanvas.style.display = "none");
 
-  // Show a random tip
+  // Show a random tip during loading
   showRandomTip();
 
-  // Animate loading bar
+  // Animate loading bar (5s)
   setTimeout(() => {
     loaderBar.style.width = "100%";
   }, 100);
 
-  // Show result after 5 seconds
+  // Show result after ~5.1s
   setTimeout(() => {
     loader.style.display = "none";
     msg.style.display = "block";
@@ -59,7 +59,7 @@ function startTest() {
     // Auto-hide message after 30s
     setTimeout(() => {
       msg.style.display = "none";
-      confettiCanvas.style.display = "none";
+      confettiCanvas && (confettiCanvas.style.display = "none");
     }, 30000);
   }, 5100);
 }
@@ -67,94 +67,86 @@ function startTest() {
 function showRandomTip() {
   const randomTip = tips[Math.floor(Math.random() * tips.length)];
   const tipBox = document.getElementById("tip");
-  tipBox.innerText = randomTip;
+  if (tipBox) tipBox.innerText = randomTip;
 }
 
 function playBeep(frequency, duration) {
-  const context = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = context.createOscillator();
-  const gainNode = context.createGain();
-
-  oscillator.connect(gainNode);
-  gainNode.connect(context.destination);
-
-  oscillator.type = 'sine';
-  oscillator.frequency.value = frequency;
-  oscillator.start();
-  gainNode.gain.setValueAtTime(1, context.currentTime);
-  oscillator.stop(context.currentTime + duration / 1000);
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.type = 'sine';
+  osc.frequency.value = frequency;
+  osc.start();
+  gain.gain.setValueAtTime(1, ctx.currentTime);
+  osc.stop(ctx.currentTime + duration / 1000);
 }
+
+/* -------- Side nav open/close -------- */
+window.addEventListener("DOMContentLoaded", () => {
+  const sideNav = document.getElementById("side-nav");
+  const menuBtn = document.getElementById("menu-toggle");
+  if (!sideNav || !menuBtn) return;
+
+  // start closed (force)
+  sideNav.classList.remove("open");
+
+  // open from right + hide ☰
+  menuBtn.addEventListener("click", () => {
+    sideNav.classList.add("open");
+    menuBtn.style.display = "none";
+  });
+});
 
 function closeSideNav() {
-  document.getElementById("side-nav").classList.remove("open");
+  const sideNav = document.getElementById("side-nav");
+  const menuBtn = document.getElementById("menu-toggle");
+  if (sideNav) sideNav.classList.remove("open");
+  if (menuBtn) menuBtn.style.display = "block";
 }
 
+/* -------- Help popup -------- */
 function toggleHelpPopup() {
   const overlay = document.getElementById("help-overlay");
-  overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
+  if (!overlay) return;
+  overlay.style.display = (overlay.style.display === "flex") ? "none" : "flex";
 }
 
 function dismissHelp(event) {
-  if (event.target.id === "help-overlay") {
+  if (event.target && event.target.id === "help-overlay") {
     toggleHelpPopup();
   }
 }
 
+/* -------- Intro box hide (double-tap) -------- */
 function hideDescription() {
   const descBox = document.querySelector(".description-box");
-  if (descBox) {
-    descBox.style.display = "none";
-  }
+  if (descBox) descBox.style.display = "none";
   hasSeenInstructions = true;
 }
 
+/* -------- Jump to controls by opening menu -------- */
 function scrollToToggle() {
-  document.getElementById("side-nav").classList.add("open");
+  document.getElementById("side-nav")?.classList.add("open");
+  const menuBtn = document.getElementById("menu-toggle");
+  if (menuBtn) menuBtn.style.display = "none";
 }
 
+/* -------- Confetti (requires canvas-confetti script) -------- */
 function triggerConfetti() {
   const canvas = document.getElementById("confetti-canvas");
-  canvas.style.display = 'block';
+  if (canvas) canvas.style.display = 'block';
 
-  if (typeof confetti === "function") {
-    // If canvas-confetti is loaded as global function
-    confetti({
-      particleCount: 60,
-      spread: 100,
-      origin: { x: 0.1, y: 0.5 },
-    });
-    confetti({
-      particleCount: 60,
-      spread: 100,
-      origin: { x: 0.9, y: 0.5 },
-    });
-  } else if (canvas.confetti) {
-    // If canvas-confetti is bound to canvas
-    canvas.confetti({
-      particleCount: 60,
-      spread: 100,
-      origin: { x: 0.1, y: 0.5 },
-    });
-    canvas.confetti({
-      particleCount: 60,
-      spread: 100,
-      origin: { x: 0.9, y: 0.5 },
-    });
-  } else {
-    console.warn("Confetti library not found");
+  try {
+    if (typeof confetti === "function") {
+      confetti({ particleCount: 60, spread: 100, origin: { x: 0.1, y: 0.5 } });
+      confetti({ particleCount: 60, spread: 100, origin: { x: 0.9, y: 0.5 } });
+    } else if (canvas && canvas.confetti) {
+      canvas.confetti({ particleCount: 60, spread: 100, origin: { x: 0.1, y: 0.5 } });
+      canvas.confetti({ particleCount: 60, spread: 100, origin: { x: 0.9, y: 0.5 } });
+    }
+  } catch (err) {
+    console.warn("Confetti error:", err);
   }
 }
-
-// Ensure sidebar is closed on load and toggle works
-window.addEventListener("DOMContentLoaded", () => {
-  const sideNav = document.getElementById("side-nav");
-  const menuToggle = document.getElementById("menu-toggle");
-
-  sideNav.classList.remove("open");
-
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
-      sideNav.classList.toggle("open");
-    });
-  }
-});
