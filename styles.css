@@ -19,6 +19,7 @@ body {
 .navbar {
   display: flex;
   flex-direction: row !important;      /* ensure LTR inside bar */
+  justify-content: flex-end !important;
   align-items: center;
   background-color: #2c8f99;
   color: white;
