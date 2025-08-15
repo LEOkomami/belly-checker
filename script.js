@@ -140,11 +140,11 @@ function triggerConfetti() {
 
   try {
     if (typeof confetti === "function") {
-      confetti({ particleCount: 100, spread: 100, origin: { x: 0.1, y: 0.5 } });
-      confetti({ particleCount: 100, spread: 100, origin: { x: 0.9, y: 0.5 } });
+      confetti({ particleCount: 120, spread: 120, origin: { x: 0.1, y: 0.5 } });
+      confetti({ particleCount: 120, spread: 120, origin: { x: 0.9, y: 0.5 } });
     } else if (canvas && canvas.confetti) {
-      canvas.confetti({ particleCount: 100, spread: 100, origin: { x: 0.1, y: 0.5 } });
-      canvas.confetti({ particleCount: 100, spread: 100, origin: { x: 0.9, y: 0.5 } });
+      canvas.confetti({ particleCount: 120, spread: 120, origin: { x: 0.1, y: 0.5 } });
+      canvas.confetti({ particleCount: 120, spread: 120, origin: { x: 0.9, y: 0.5 } });
     }
   } catch (err) {
     console.warn("Confetti error:", err);
