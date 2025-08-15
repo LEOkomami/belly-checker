@@ -203,7 +203,6 @@ footer {
   gap: 12px;
   width: 100%;
   margin-bottom: 8px;
-  flex-direction: row-reverse; 
 }
 
 .side-nav-icon {
