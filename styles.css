@@ -19,7 +19,6 @@ body {
 .navbar {
   display: flex;
   flex-direction: row !important;      /* ensure LTR inside bar */
-  justify-content: space-between !important;/* push hamburger to the right */
   align-items: center;
   background-color: #2c8f99;
   color: white;
