@@ -36,42 +36,38 @@ body {
   justify-content: center;
   align-items: center;
   background: white;
-  padding: 30px 20px;
-  /* Big Header */
+  padding: 15px 20px;
   position: relative;
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.05);
-  /* Thicker shadow */
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.05);
   z-index: 100;
+  min-height: 70px;
 }
 
 .app-title {
-  font-size: 3.5rem;
-  /* Extra Large Header */
+  font-size: 1.8rem;
   font-weight: 900;
   color: var(--secondary);
-  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
 }
 
 .hamburger {
   position: absolute;
-  right: 20px !important;
-  /* BACK TO RIGHT */
+  right: 15px !important;
   left: auto !important;
-  /* Explicitly unset left */
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2.2rem;
-  /* Bigger button */
+  font-size: 1.5rem;
   background: var(--primary);
   border: none;
   color: white;
   cursor: pointer;
-  padding: 12px;
-  border-radius: 16px;
+  padding: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 0 #eab308;
+  box-shadow: 0 4px 0 #eab308;
   transition: all 0.2s;
 }
 
