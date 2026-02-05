@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="he">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>בדיקת בטן</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2c8f99">
@@ -11,6 +15,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="בדיקת בטן">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <script>
@@ -19,84 +24,44 @@
         .then(() => console.log("Service Worker Registered"));
     }
   </script>
-  <style>
-    .side-nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 280px;
-      height: 100%;
-      background-color: #FFEDCC;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-      padding: 30px 20px;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .side-nav.open {
-      transform: translateX(0);
-    }
-
-    .side-nav .toggle-container p {
-      font-size: 1.4em;
-      margin-bottom: 20px;
-      color: #1a2e4b;
-    }
-
-    .side-nav .toggle-button {
-      padding: 14px 40px;
-      font-size: 1.4em;
-      margin: 12px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      color: white;
-      width: 100%;
-      max-width: 200px;
-    }
-
-    .side-nav .green {
-      background-color: #2ecc71;
-    }
-
-    .side-nav .red {
-      background-color: #e74c3c;
-    }
-  </style>
 </head>
+
 <body>
   <div class="navbar">
-    <span class="app-title">בדיקת בטן</span>
     <button id="menu-toggle" class="hamburger">&#9776;</button>
+    <span class="app-title">בדיקת בטן</span>
   </div>
+
+  <!-- Ninja Controls: Secret invisible zones -->
+  <div id="ninja-full" class="ninja-zone left"></div>
+  <div id="ninja-room" class="ninja-zone right"></div>
+
+  <!-- Laser Scan Line -->
+  <div id="laser-line"></div>
 
   <div class="side-nav" id="side-nav">
     <div class="toggle-container">
+      <div class="close-menu" onclick="document.getElementById('side-nav').classList.remove('open')">&times;</div>
       <p>הילד(ה) אכל?</p>
-      <button class="toggle-button green" onclick="setFed(true)">כן</button>
-      <button class="toggle-button red" onclick="setFed(false)">לא</button>
+      <button class="toggle-button green" onclick="setFed(true)">כן (מלא)</button>
+      <button class="toggle-button red" onclick="setFed(false)">לא (יש מקום)</button>
     </div>
   </div>
 
-  <div class="description-box" ondblclick="hideDescription()">
-    <p>
-      👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
-      <br />
-      לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
-      ולבחור האם הילד(ה) אכל/ה מספיק או לא.
-      <br />
-      לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
-      לחיצה כפולה כאן תעלים את ההוראות 🤫
-    </p>
-  </div>
-
   <div class="main-content">
+    <div class="description-box" ondblclick="hideDescription()">
+      <p>
+        👶 ברוכים הבאים לבדיקה של בטן הילד(ה)!
+        <br />
+        לפני שמריצים את הבדיקה, יש לפתוח את התפריט (כפתור ≡ למעלה)
+        ולבחור האם הילד(ה) אכל/ה מספיק או לא.
+        <br />
+        לאחר כך לחצו על כפתור <strong>בדיקה</strong> ותגלו את התוצאה 😊<br />
+        לחיצה כפולה כאן תעלים את ההוראות 🤫
+      </p>
+    </div>
+
     <button class="button" onclick="startTest()">בדיקה</button>
-    <div class="arrow-down" onclick="scrollToToggle()">&#x25BC;</div>
     <div id="loader">
       <div id="loader-bar"></div>
     </div>
@@ -104,9 +69,13 @@
   </div>
 
   <footer>
-    An LEOkonami app
+    <div class="footer-brand"></div>A KONAMI APP</div>
+    <a href="https://buymeacoffee.com/leokonami" target="_blank" class="coffee-link">
+      <span>☕</span> Buy me a coffee
+    </a>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>

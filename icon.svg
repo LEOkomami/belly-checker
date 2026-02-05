@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded Background -->
+  <rect width="512" height="512" rx="120" fill="#6EB5FF"/>
+  
+  <!-- "Belly" Circle -->
+  <circle cx="256" cy="240" r="140" fill="#FFD93D" stroke="white" stroke-width="20"/>
+  
+  <!-- Scanning Beam -->
+  <rect x="120" y="220" width="272" height="25" rx="12.5" fill="#A78BFA">
+    <animate attributeName="y" values="140;340;140" dur="3s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Decorative Dots -->
+  <circle cx="100" cy="100" r="20" fill="white" fill-opacity="0.3"/>
+  <circle cx="412" cy="412" r="30" fill="white" fill-opacity="0.3"/>
+  <circle cx="412" cy="100" r="15" fill="white" fill-opacity="0.3"/>
+</svg>
