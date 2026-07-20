@@ -1,4 +1,4 @@
-const cacheName = 'belly-checker-v3';
+const cacheName = 'belly-checker-v4';
 const staticAssets = [
   './',
   './index.html',

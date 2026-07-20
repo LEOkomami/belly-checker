@@ -3,6 +3,25 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!--
+    Content-Security-Policy — static, client-side app on GitHub Pages, so no per-request
+    nonces are possible. The inline service-worker registration script keeps 'unsafe-inline'
+    (so this is not a strict XSS shield), but the app renders no user input as HTML, so the
+    XSS surface is already effectively zero. This CSP locks the app down to its own origin
+    plus Google Fonts, and object-src 'none' + base-uri 'self' block plugin/base-tag tricks.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'self';
+    manifest-src 'self';
+    worker-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self'" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>בדיקת בטן</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +90,7 @@
 
   <footer>
     <div class="footer-brand">A KONAMI APP</div>
-    <a href="https://buymeacoffee.com/leokonami" target="_blank" class="coffee-link">
+    <a href="https://buymeacoffee.com/leokonami" target="_blank" rel="noopener noreferrer" class="coffee-link">
       <span>☕</span> Buy me a coffee
     </a>
   </footer>
